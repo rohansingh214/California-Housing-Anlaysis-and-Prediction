@@ -20,8 +20,8 @@ from sklearn.metrics import mean_squared_error
 #importing the dataset
 housing=pd.read_csv(r'/Users/rohansingh/Desktop/housing.csv')
 #housing.head(10)
-housing.info()
-housing.describe()
+#housing.info()
+#housing.describe()
 #housing.hist( bins=50, figsize=(20,15))
 #plt.show()
 
