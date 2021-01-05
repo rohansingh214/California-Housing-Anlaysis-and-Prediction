@@ -30,15 +30,15 @@ for train_index, test_index in split.split(housing, housing["income_cat"]):
 for set_ in (strat_train_set, strat_test_set):
     set_.drop("income_cat", axis=1, inplace=True)
 
-housing=strat_train_set.copy()
-housing.plot(kind="scatter",x="longitude",y="latitude",alpha=0.4,s=housing["population"]/100,label="population",figsize=(10,7),c="median_house_value",cmap=plt.get_cmap("jet"))
-plt.legend()
+#housing=strat_train_set.copy()
+#housing.plot(kind="scatter",x="longitude",y="latitude",alpha=0.4,s=housing["population"]/100,label="population",figsize=(10,7),c="median_house_value",cmap=plt.get_cmap("jet"))
+#plt.legend()
+
+#Preparing for MAchine Learning
+housing=strat_train_set.drop("median_house_value",axis=1)
+housing_labels=strat_train_set["median_house_value"].copy()
 housing_num=housing.drop("ocean_proximity",axis=1)
 housing_cat=housing[["ocean_proximity"]]
-#Preparing for MAchine Learning
-housing=strat_test_set.drop("median_house_value",axis=1)
-housing_labels=strat_train_set["median_house_value"].copy()
-
 room_ix, bedrooms_ix, population_ix, households_ix=3,4,5,6
 
 class CombinedAttributesAdder(BaseEstimator, TransformerMixin):
@@ -71,7 +71,9 @@ full_pipeline=ColumnTransformer([
             ("cat",OneHotEncoder(),cat_attribs),
         ])
 
+housing_prepared=full_pipeline.fit_transform(housing)
 
+#training and Evaluating model on training set
 
         
 
