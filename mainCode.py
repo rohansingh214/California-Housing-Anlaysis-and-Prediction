@@ -15,6 +15,8 @@ from scipy.stats import randint
 from sklearn.ensemble import RandomForestRegressor
 from scipy import stats
 from sklearn.metrics import mean_squared_error
+from sklearn.metrics import accuracy_score
+import sklearn
 
 
 #importing the dataset
@@ -136,5 +138,3 @@ squared_errors = (final_predictions - y_test) ** 2
 print(np.sqrt(stats.t.interval(confidence, len(squared_errors) - 1,
                          loc=squared_errors.mean(),
                          scale=stats.sem(squared_errors))))
-
-#End
